@@ -8,7 +8,7 @@ function preload(){
 }
 
 function setup(){
-  createCanvas(400,400);
+  createCanvas(280,400);
   //create sprites here
   path = createSprite(150,200,10,10);
   path.addImage("path",pathImg);
@@ -17,11 +17,12 @@ function setup(){
   runner = createSprite(150,200,5,5);
   runner.addAnimation("runner", runnerani);
   runner.scale = 0.05;
-  runner.x = World.mouseX;
+  
   
   invisibleBoundary = createSprite(25,200,10,400);
-  invisibleBoundary.visible = false;
-  
+  invisibleBoundary.visible = true;
+  invisibleBoundary2 = createSprite(280,200,10,400);
+  invisibleBoundary2.visible = true;
 }
 
 function draw() {
@@ -30,6 +31,11 @@ function draw() {
   if(path.y > 400 ) {
     path.y = height/2;
   }
+  if(runner.x <= 25) {
+    runner.x = 30
+  }
   runner.collide(invisibleBoundary);
+  runner.collide(invisibleBoundary2);
   drawSprites();
+  runner.x = World.mouseX;
 }
